@@ -1,6 +1,9 @@
+// no need to install with npm
+// They work with node just fine
 let fs = require("fs");
 let path = require("path");
 
+// If path entered is incorrect or empty
 function fn(srcPath) {
     if (srcPath == undefined) {
         supportFn(process.cwd(), "");
@@ -14,6 +17,7 @@ function fn(srcPath) {
     }
 }
 
+// recursive function to create tree with deep sync
 function supportFn(srcPath, indent) {
     let baseName = path.basename(srcPath);
     let isFile = fs.lstatSync(srcPath).isFile();
@@ -29,6 +33,7 @@ function supportFn(srcPath, indent) {
     }
 }
 
+// exports the objects with an alias name to be used (after importing)
 module.exports = {
     fxn: fn
 }

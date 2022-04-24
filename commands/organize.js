@@ -1,6 +1,9 @@
+// no need to install with npm
+// they work with node just fine
 let fs = require("fs");
 let path = require("path");
 
+// type of files to organize
 let types = {
     media: ["mp4", "mkv"],
     archives: ['zip', '7z', 'rar', 'tar', 'gz', 'ar', 'iso', "xz"],
@@ -8,6 +11,7 @@ let types = {
     app: ['exe', 'dmg', 'pkg', "deb"]
 }
 
+// If path entered is incorrect or empty
 function fn(srcPath) {
     if (srcPath == undefined) {
         organizeFiles(process.cwd());
@@ -21,6 +25,7 @@ function fn(srcPath) {
     }
 }
 
+// making the classification folders, and checking each file one by one to put them into their appropriate classification folder 
 function organizeFiles(srcPath) {
     let organizeFilesPath = path.join(srcPath, "organized_files");
     if (!fs.existsSync(organizeFilesPath)) {
@@ -40,6 +45,7 @@ function organizeFiles(srcPath) {
     }
 }
 
+// Chnaging the position of the original file from its original location to the new folder to which it is classified
 function copyFiles(contentPath, folderPath) {
     let fileName = path.basename(contentPath);
     let fileDest = path.join(folderPath, fileName);
@@ -47,6 +53,7 @@ function copyFiles(contentPath, folderPath) {
     fs.unlinkSync(contentPath);
 }
 
+// function to classify files on basis of their extensions
 function classify(files) {
     let extension = path.extname(files);
     extension = extension.slice(1);
@@ -60,6 +67,7 @@ function classify(files) {
     return "others";
 }
 
+// exports the objects with an alias name to be used (after importing)
 module.exports = {
     fxn: fn
 }

@@ -1,7 +1,9 @@
+// importing code from subsidary javascript files
 let help = require("./commands/help");
 let tree = require("./commands/tree");
 let organize = require("./commands/organize");
 
+// makes an array of strings from console after "node" & <filename> 
 let input = process.argv.slice(2);
 let cmd = input[0];
 let realPath = input[1];

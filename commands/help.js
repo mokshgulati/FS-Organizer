@@ -5,6 +5,7 @@ function fn() {
     3. node main.js organize "path"`);
 }
 
+// exports the objects with an alias name to be used (after importing)
 module.exports = {
     fxn: fn
 }
